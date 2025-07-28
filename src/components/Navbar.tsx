@@ -25,6 +25,9 @@ const Navbar = () => {
                      <Link href="/" className='hover:translate-y-[-2px] transition duration-300'>
                         Home
                      </Link>
+                     <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>
+                        About
+                     </Link>
                      <Link href="/features" className='hover:translate-y-[-2px] transition duration-300'>
                         Features
                      </Link>
@@ -35,7 +38,7 @@ const Navbar = () => {
                         Contact
                      </Link>
                   </nav>
-                  <button className="px-4 py-2 rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
+                  <button className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
                      Sign In / Sign Up
                   </button>
                </div>
@@ -51,9 +54,10 @@ const Navbar = () => {
             <div className="md:hidden bg-background border-b border-gray-300">
                <div className="container px-4 py-4 flex flex-col items-center gap-4">
                   <Link href="/" className='hover:translate-y-[-2px] transition duration-300'>Home</Link>
+                  <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>About</Link>
                   <Link href="/features" className='hover:translate-y-[-2px] transition duration-300'>Feature</Link>
                   <Link href="/how-it-works" className='hover:translate-y-[-2px] transition duration-300'>How It Works</Link>
-                  <button className="px-4 py-2 rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
+                  <button className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
                      Sign In / Sign Up
                   </button>
                </div>

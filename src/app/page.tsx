@@ -2,6 +2,7 @@ import { LuCircleHelp } from "react-icons/lu";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Benefits from "@/components/Benefits";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       </div>
       <div>
         <Hero />
+        <Benefits />
       </div>
       <Footer />
     </div>
