@@ -28,11 +28,8 @@ const Navbar = () => {
                      <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>
                         About
                      </Link>
-                     <Link href="/features" className='hover:translate-y-[-2px] transition duration-300'>
-                        Features
-                     </Link>
-                     <Link href="/how-it-works" className='hover:translate-y-[-2px] transition duration-300'>
-                        How It Works
+                     <Link href="/marketplace" className='hover:translate-y-[-2px] transition duration-300'>
+                        Marketplace
                      </Link>
                      <Link href="/contact" className='hover:translate-y-[-2px] transition duration-300'>
                         Contact
@@ -55,8 +52,8 @@ const Navbar = () => {
                <div className="container px-4 py-4 flex flex-col items-center gap-4">
                   <Link href="/" className='hover:translate-y-[-2px] transition duration-300'>Home</Link>
                   <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>About</Link>
-                  <Link href="/features" className='hover:translate-y-[-2px] transition duration-300'>Feature</Link>
-                  <Link href="/how-it-works" className='hover:translate-y-[-2px] transition duration-300'>How It Works</Link>
+                  <Link href="/marketplace" className='hover:translate-y-[-2px] transition duration-300'>Marketplace</Link>
+                  <Link href="/contact" className='hover:translate-y-[-2px] transition duration-300'>Contact</Link>
                   <button className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
                      Sign In / Sign Up
                   </button>

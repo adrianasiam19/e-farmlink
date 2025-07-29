@@ -15,11 +15,7 @@ const Footer = () => {
                   E-Farmlink
                </Link>
                <p className="mt-4 text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  E-Farmlink is a comprehensive platform designed to bridge the gap between farmers and consumers. It empowers farmers by providing them with a direct marketplace to showcase and sell their produce, ensuring they receive fair prices without the need for intermediaries. At the same time, it offers customers the opportunity to purchase fresh, locally sourced products, fostering a sense of community and supporting sustainable agricultural practices.
                </p>
             </div>
 
