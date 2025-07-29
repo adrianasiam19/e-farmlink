@@ -35,9 +35,9 @@ const Navbar = () => {
                         Contact
                      </Link>
                   </nav>
-                  <button className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
+                  <Link href="/auth" className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
                      Sign In / Sign Up
-                  </button>
+                  </Link>
                </div>
                <div className="md:hidden">
                   <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -54,9 +54,9 @@ const Navbar = () => {
                   <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>About</Link>
                   <Link href="/marketplace" className='hover:translate-y-[-2px] transition duration-300'>Marketplace</Link>
                   <Link href="/contact" className='hover:translate-y-[-2px] transition duration-300'>Contact</Link>
-                  <button className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
+                  <Link href="/auth" className="px-4 py-2 font-bold rounded-md bg-green-900 text-white hover:scale-105 transition-all duration-300">
                      Sign In / Sign Up
-                  </button>
+                  </Link>
                </div>
             </div>
          )}
