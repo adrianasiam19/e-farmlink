@@ -88,6 +88,7 @@ const Navbar = () => {
               <Link href="/about" className='hover:translate-y-[-2px] transition duration-300'>About</Link>
               <Link href="/marketplace" className='hover:translate-y-[-2px] transition duration-300'>Marketplace</Link>
               <Link href="/contact" className='hover:translate-y-[-2px] transition duration-300'>Contact</Link>
+              <Link href="/UserChat" className='hover:translate-y-[-2px] transition duration-300'>Chat</Link>
             </nav>
 
             {!userFirstName ? (
