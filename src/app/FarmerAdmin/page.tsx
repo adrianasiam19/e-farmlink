@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProtectedRoute from "@/components/protectedroute";
+import Link from "next/link";
 
 const FarmerAdminPage = () => {
   const [formData, setFormData] = useState({
@@ -153,13 +154,18 @@ const FarmerAdminPage = () => {
           <h2 className="text-2xl font-bold text-green-900">
             Farmer Dashboard
           </h2>
-          <button
+          <div>
+            <button
             onClick={() => setShowModal(true)}
             className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-md text-sm font-medium"
           >
             + Add Product
           </button>
+           <Link href="/AdminOrders" className="ml-20 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-md text-sm font-medium">Orders</Link>
+          </div>
+          
         </div>
+       
 
         {/* Product Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -147,27 +147,38 @@ export default function UserChat() {
     <>
       <Navbar />
 
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 py-8">
-        {/* Chat Container */}
-        <div className="w-full max-w-5xl h-[500px] bg-white rounded-xl shadow-xl flex overflow-hidden">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-purple-100 px-4 py-8">
+        <div
+          className="w-full max-w-5xl h-[560px] bg-white rounded-3xl shadow-2xl flex overflow-hidden"
+          style={{ borderRadius: 24 }}
+        >
           {/* Sidebar */}
-          <div className="w-1/3 bg-gray-50 border-r overflow-y-auto p-4">
-            <h2 className="text-xl font-semibold text-gray-700 mb-4">
-              {getSidebarTitle()}
-            </h2>
-
-            <div className="space-y-2">
+          <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+            <div className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-5 border-b border-blue-100">
+              <User className="w-6 h-6" />
+              <h2 className="text-lg font-semibold tracking-wide">
+                {getSidebarTitle()}
+              </h2>
+            </div>
+            <div className="flex-1 overflow-y-auto bg-gray-50 px-4 py-3 space-y-3">
+              {users.length === 0 && (
+                <p className="text-center text-gray-400">No users available</p>
+              )}
               {users.map((user) => (
                 <div
                   key={user.id}
                   onClick={() => openChatWithUser(user.id)}
-                  className="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-blue-100 transition"
+                  className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${
+                    selectedUser?.id === user.id
+                      ? "bg-blue-100 shadow-inner"
+                      : "hover:bg-blue-50"
+                  }`}
                 >
-                  <User className="w-5 h-5 text-blue-600 fill-blue-100" />
-                  <div className="flex-1">
-                    <span className="text-sm font-medium text-gray-700">
+                  <User className="w-5 h-5 text-blue-600" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-800">
                       {user.first_name || user.email}
-                    </span>
+                    </p>
                     {user.last_message && (
                       <p className="text-xs text-gray-500 truncate">
                         {user.last_message}
@@ -180,19 +191,24 @@ export default function UserChat() {
           </div>
 
           {/* Chat Area */}
-          <div className="w-2/3 flex flex-col">
-            {/* Chat Header */}
-            {selectedUser && (
-              <div className="border-b px-4 py-2 bg-blue-50 text-gray-800 font-medium">
-                Chatting with: {selectedUser.first_name || selectedUser.email}
-              </div>
-            )}
+          <div className="flex-1 flex flex-col bg-gradient-to-br from-white to-blue-50">
+            {/* Header */}
+            <div className="flex items-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 border-b border-blue-200">
+              <User className="w-6 h-6" />
+              <h2 className="text-lg font-semibold">
+                {selectedUser
+                  ? `Chat with ${selectedUser.first_name || selectedUser.email}`
+                  : "Select a user"}
+              </h2>
+            </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
               {selectedRoomId ? (
                 messages.map((msg) => {
-                  const isSender = msg.sender == userId;
+                  const isSender = String(msg.sender) === userId;
+                  const isFarmer = msg.is_farmer; // Assuming `is_farmer` is passed in message
+
                   return (
                     <div
                       key={msg.id}
@@ -201,21 +217,30 @@ export default function UserChat() {
                       }`}
                     >
                       <div
-                        className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl shadow
-              ${
-                isSender
-                  ? "bg-blue-500 text-white rounded-br-none self-end"
-                  : "bg-gray-200 text-gray-800 rounded-bl-none self-start"
-              }`}
+                        className={`px-5 py-3 rounded-2xl shadow max-w-[80%] relative ${
+                          isFarmer
+                            ? isSender
+                              ? "bg-blue-600 text-white"
+                              : "bg-blue-100 text-gray-900"
+                            : isSender
+                            ? "bg-gray-800 text-white"
+                            : "bg-gray-200 text-gray-900"
+                        }`}
                         style={{
-                          borderBottomRightRadius: isSender ? 0 : undefined,
-                          borderBottomLeftRadius: !isSender ? 0 : undefined,
+                          borderBottomRightRadius: isSender ? 0 : 16,
+                          borderBottomLeftRadius: isSender ? 16 : 0,
                         }}
                       >
                         <p className="text-sm">{msg.content}</p>
                         <span
-                          className={`text-xs block mt-1 ${
-                            isSender ? "text-blue-100" : "text-gray-500"
+                          className={`text-xs mt-2 block text-right ${
+                            isFarmer
+                              ? isSender
+                                ? "text-blue-200"
+                                : "text-blue-600"
+                              : isSender
+                              ? "text-gray-400"
+                              : "text-gray-500"
                           }`}
                         >
                           {new Date(msg.timestamp).toLocaleTimeString([], {
@@ -228,26 +253,27 @@ export default function UserChat() {
                   );
                 })
               ) : (
-                <p className="text-center text-gray-400 mt-10">
+                <div className="text-center text-gray-400 mt-10">
                   Select a {currentUser?.is_farmer ? "buyer" : "farmer"} to
                   start messaging
-                </p>
+                </div>
               )}
             </div>
+
             {/* Input */}
             {selectedRoomId && (
-              <div className="p-4 border-t flex items-center gap-2">
+              <div className="p-4 bg-white border-t border-gray-200 flex items-center gap-3">
                 <input
                   type="text"
                   value={messageInput}
                   onChange={(e) => setMessageInput(e.target.value)}
-                  className="flex-1 border rounded p-2"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
                   placeholder="Type your message..."
-                  onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                  onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                 />
                 <button
                   onClick={sendMessage}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
                 >
                   Send
                 </button>

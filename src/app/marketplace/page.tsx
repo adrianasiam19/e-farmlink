@@ -36,7 +36,8 @@ const Marketplace = () => {
   const categories = ["Fruits", "Vegetables", "Dairy", "Grains"];
 
   useEffect(() => {
-    const access = typeof window !== "undefined" ? localStorage.getItem("access") : null;
+    const access =
+      typeof window !== "undefined" ? localStorage.getItem("access") : null;
     setToken(access);
   }, []);
 
@@ -95,7 +96,7 @@ const Marketplace = () => {
         {
           order: orderRes.data.id,
           product: selectedProduct.id,
-          quantity: quantity
+          quantity: quantity,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -183,7 +184,7 @@ const Marketplace = () => {
         <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-white/30">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
             <h2 className="text-xl font-semibold mb-4">Place Order</h2>
-            
+
             <div className="mb-4">
               <img
                 src={selectedProduct.image}
@@ -191,8 +192,12 @@ const Marketplace = () => {
                 className="w-full h-32 object-cover rounded-md mb-3"
               />
               <h3 className="font-semibold">{selectedProduct.name}</h3>
-              <p className="text-gray-600 text-sm">{selectedProduct.description}</p>
-              <p className="font-bold text-green-700 mt-2">GHS {selectedProduct.price}</p>
+              <p className="text-gray-600 text-sm">
+                {selectedProduct.description}
+              </p>
+              <p className="font-bold text-green-700 mt-2">
+                GHS {selectedProduct.price}
+              </p>
             </div>
 
             <div className="mb-4">
@@ -203,8 +208,16 @@ const Marketplace = () => {
                 type="number"
                 min="1"
                 max={selectedProduct.stock}
-                value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                value={isNaN(quantity) ? "" : quantity}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val === "") {
+                    setQuantity(NaN); // allow empty state
+                  } else {
+                    const num = parseInt(val);
+                    if (!isNaN(num)) setQuantity(num);
+                  }
+                }}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-green-500 focus:border-green-500"
               />
               <p className="text-xs text-gray-500 mt-1">
@@ -214,7 +227,8 @@ const Marketplace = () => {
 
             <div className="mb-4">
               <p className="font-semibold">
-                Total: GHS {(parseFloat(selectedProduct.price) * quantity).toFixed(2)}
+                Total: GHS{" "}
+                {(parseFloat(selectedProduct.price) * quantity).toFixed(2)}
               </p>
             </div>
 
