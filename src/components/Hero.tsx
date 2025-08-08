@@ -21,7 +21,7 @@ const Hero = () => {
                <Link href="/how-it-works" className='px-4 py-2 bg-green-900 text-white rounded-md hover:bg-green-800 transition-all duration-300'>
                   How it works
                </Link>
-               <Link href="/" className='px-4 py-2 bg-green-50/50 text-white rounded-md hover:bg-green-50/40 transition-all duration-300'>
+               <Link href="/auth" className='px-4 py-2 bg-green-50/50 text-white rounded-md hover:bg-green-50/40 transition-all duration-300'>
                   Get started
                </Link>
             </div>
