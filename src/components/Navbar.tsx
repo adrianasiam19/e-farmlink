@@ -7,12 +7,14 @@ import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import Image from 'next/image';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userFirstName, setUserFirstName] = useState<string | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter()
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -62,6 +64,7 @@ const Navbar = () => {
         localStorage.removeItem('refresh');
         setUserFirstName(null);
         toast.success("Logged out successfully");
+        router.push("/auth")
         setShowDropdown(false);
         setIsMenuOpen(false);
       } else {
