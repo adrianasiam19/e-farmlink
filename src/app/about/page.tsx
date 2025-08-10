@@ -4,19 +4,19 @@ import Image from 'next/image'
 
 const team = [
    {
-      name: 'Nana Kwame Anynful',
+      name: 'Nana Kwame Anyanful',
       role: 'Senior Backend Developer',
-      image: '/team/nana.jpg',
+      image: '/team/jjj.jpg',
    },
    {
       name: 'Yaw Omari Asiamah',
       role: 'Senior Frontend Developer',
-      image: '/team/jonathan.png',
+      image: '/team/asiamah.jpg',
    },
    {
       name: 'Elaine Boatemaa Botchway',
       role: 'Senior UI/UX Designer',
-      image: '/team/temiloluwa.png',
+      image: '/team/eee.jpg',
    }
 ]
 

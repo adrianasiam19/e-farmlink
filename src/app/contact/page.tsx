@@ -59,7 +59,7 @@ const Contact = () => {
                   <h3 className='text-2xl font-bold mb-4'>Contact Information</h3>
                   <p className='flex items-center gap-2'>
                      <FaPhone />
-                     +233 000 000 0000
+                     +233 54 8181 959
                   </p>
                   <p className='flex items-center gap-2'>
                      <FaEnvelope />
